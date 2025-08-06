@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@layer components {
+  .info-card {
+    display: grid;
+    grid-template-areas:
+      "balance  balance  balance"
+      "xp       rank     chain";
+  }
+
+  .info-card > * {
+    @apply bg-white;
+  }
+
+  .balance {
+    grid-area: balance;
+  }
+
+  .xp {
+    grid-area: xp;
+  }
+
+  .rank {
+    grid-area: rank;
+  }
+
+  .chain {
+    grid-area: chain;
+  }
+}

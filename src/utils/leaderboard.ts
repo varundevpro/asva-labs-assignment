@@ -25,7 +25,7 @@ export interface LeaderboardRow {
  *
  * @returns a new LeaderboardRow object
  */
-export function createLeaderboardRow(time: number): LeaderboardRow {
+export function createLeaderboardRow(time?: number): LeaderboardRow {
   const account = "0x" + hexString(40)
   const type = pickOne(["add", "remove"] as const)!;
   const timestamp = (time ? time : Date.now()) - 1000;

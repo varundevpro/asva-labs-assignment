@@ -1,19 +1,39 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
-import { useState, useEffect, createContext, useContext, useMemo } from "react";
+
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useMemo,
+  type ReactNode,
+} from "react";
 import { v4 as uuidv4 } from "uuid";
 
 type HistoryEntry = {
-  id: number;
+  id: string;
   xpEarned: number;
-  timestamp: string;
+  timestamp: number;
+};
+
+type ContextValue = {
+  history: HistoryEntry[];
+  addEntryToHistory: (xpEarned: number) => void;
+  clearHistory: () => void;
 };
 
 // A context to manage the game history
-const HistoryContext = createContext<{ history: HistoryEntry[] }>();
+const HistoryContext = createContext<ContextValue>({
+  history: [],
+  // @ts-expect-error fallback function
+  addEntryToHistory: (xpEarned: number) => {},
+  clearHistory: () => {},
+});
 
 // A custom provider that handles localStorage and state management for history
-export const HistoryProvider = ({ children }) => {
-  const [history, setHistory] = useState(() => {
+export const HistoryProvider = ({ children }: { children: ReactNode }) => {
+  const [history, setHistory] = useState<HistoryEntry[]>(() => {
     try {
       const storedHistory = localStorage.getItem("diceRollHistory");
       return storedHistory ? JSON.parse(storedHistory) : [];
@@ -33,8 +53,8 @@ export const HistoryProvider = ({ children }) => {
   }, [history]);
 
   // Function to add a new entry to the history
-  const addEntryToHistory = (xpEarned) => {
-    const newEntry = {
+  const addEntryToHistory = (xpEarned: number) => {
+    const newEntry: HistoryEntry = {
       id: uuidv4(),
       xpEarned,
       timestamp: Date.now(),

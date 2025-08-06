@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { AnimatePresence, motion } from "motion/react";
-import React from "react";
 
 import { formatTimestamp } from "../utils/date";
 import { useHistory } from "../context/history";

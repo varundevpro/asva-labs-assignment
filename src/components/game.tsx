@@ -21,7 +21,7 @@ export function Game() {
 
   const confettiRef = React.useRef<ConfettiRef>(null);
 
-  const [currentXp, setCurrentXp] = React.useState(null);
+  const [currentXp, setCurrentXp] = React.useState<number | null>(null);
   const [isRolling, setIsRolling] = React.useState(false);
   const { addEntryToHistory } = useHistory();
 
@@ -43,7 +43,7 @@ export function Game() {
   // Function to handle the dice roll
   const rollDice = () => {
     if (!address && !connectModalOpen) {
-      openConnectModal();
+      openConnectModal?.();
       return;
     }
 

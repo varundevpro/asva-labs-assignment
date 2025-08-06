@@ -25,15 +25,10 @@ const connectors = connectorsForWallets(
       wallets: [rainbowWallet, injectedWallet],
     },
   ],
-  {
-    appName: "My RainbowKit App",
-    projectId: "YOUR_PROJECT_ID",
-  }
+  { appName: "Asva Labs Assignment", projectId: "RANDOM_PROJECT_ID" }
 );
 
 const config = createConfig({
-  appName: "Asva Labs Assignment",
-  projectId: "RANDOM_PROJECT_ID",
   chains: [mainnet, polygon, optimism, arbitrum, base, testChain],
   connectors,
   client({ chain }) {

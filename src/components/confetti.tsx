@@ -64,7 +64,7 @@ const ConfettiComponent = forwardRef<ConfettiRef, Props>((props, ref) => {
       console.log("firing...", instanceRef.current, { ...options, ...opts });
 
       if (instanceRef.current) {
-        instanceRef.current().then(() => console.log("done..."));
+        instanceRef.current()?.then(() => console.log("done..."));
       }
 
       try {
